@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>旋转的小球</title>
+    <style>
+      .box {
+        width: 120px;
+        height: 120px;
+        position: relative;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+      }
+      .box div {
+        height: 40%;
+        width: 40%;
+        border-radius: 50%;
+        position: absolute;
+        animation: donghua 2s ease infinite;
+      }
+      .box :nth-child(1) {
+        background: green;
+      }
+      .box :nth-child(2) {
+        background: blue;
+        animation-delay: -0.5s;
+      }
+      .box :nth-child(3) {
+        background: rebeccapurple;
+        animation-delay: -1s;
+      }
+      .box :nth-child(4) {
+        background: yellow;
+
+        animation-delay: -1.5s;
+      }
+      @keyframes donghua {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        25% {
+          transform: translate(150%, 0);
+        }
+        50% {
+          transform: translate(150%, 150%);
+        }
+        75% {
+          transform: translate(0, 150%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </body>
+</html>

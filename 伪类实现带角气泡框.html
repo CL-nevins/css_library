@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>css伪类的学习</title>
+    <meta charset="utf-8" />
+    <style>
+        .text--center {
+            text-align: center;
+        }
+        .wrap {
+            padding-left: 7%;
+        }
+        .title-style {
+            font-weight: 100;
+            font-size: 3em;
+            color: #346BB3;
+        }
+        .box {
+            width: 32.40741%;
+            float: left;
+            margin-left: 0.46296%;
+            margin-right: 0.46296%;
+            position: relative;
+            background: #346BB3;
+            color: #fff;
+            padding: 1%;
+            margin: 5%;
+            white-space: nowrap;
+            border-radius: 5px;
+        }
+        .box:after {
+            content: " ";
+            position: absolute;
+            height: 0;
+            width: 0;
+            border: solid transparent;
+            pointer-events: none;
+            border-width: 16px;
+            border-color: #fff;
+        }
+        .pointer--bottom {
+            animation: animimate-pointer--bottom 500ms ease-in-out;
+            animation-transform-origin: bottom center;
+        }
+        .pointer--bottom:after {
+            margin-left: -16px;
+            border-top-color: #346BB3;
+            top: 100%;
+            left: 50%;
+        }
+        .pointer--top {
+            animation: animimate-pointer--top 500ms ease-in-out;
+            transform-origin: top center;
+        }
+        .pointer--top:after {
+            margin-left: -16px;
+            border-bottom-color: #346BB3;
+            top: -32px;
+            left: 50%;
+        }
+        .pointer--left {
+            animation: animate-pointer--left 500ms ease-in-out;
+            transform-origin: left center;
+        }
+        .pointer--left:after {
+            border-right-color: #346BB3;
+            top: 25%;
+            left: -32px;
+        }
+        .pointer--right {
+            animation: animate-pointer--right 500ms ease-in-out;
+            transform-origin: right center;
+        }
+        .pointer--right:after {
+            border-left-color: #346BB3;
+            top: 25%;
+            right: -32px;
+        }
+        @keyframes animimate-pointer--bottom {
+            0% {
+                opacity: 0;
+                transform: scale(0.1) rotate(30deg) translateY(50px) rotateX(90deg);
+            }
+            50% {
+                transform: rotate(-10deg) rotateX(-2deg);
+                opacity: 1;
+            }
+            70% {
+                transform: rotate(3deg);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        @keyframes animimate-pointer--top {
+            0% {
+                transform: scale(0.1) rotate(-30deg) translateY(-50px) rotateX(-90deg);
+                opacity: 0;
+            }
+            50% {
+                transform: rotate(10deg) rotateX(2deg);
+                opacity: 1;
+            }
+            70% {
+                transform: rotate(-3deg);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        @keyframes animate-pointer--left {
+            0% {
+                transform: rotate(0deg) rotateX(-30deg);
+                opacity: 0;
+            }
+            50% {
+                transform: rotate(-10deg);
+                opacity: 1;
+            }
+            70% {
+                transform: rotate(10deg) rotateX(30deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+        @keyframes animate-pointer--right {
+            0% {
+                transform: rotate(0deg) rotateX(30deg);
+                opacity: 0;
+            }
+            50% {
+                transform: rotate(10deg);
+                opacity: 1;
+            }
+            70% {
+                transform: rotate(-10deg) rotateX(-30deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+        /* work in progress */
+    </style>
+  </head>
+  <body>
+    <div style="width:100%;overflow:hidden;background-color:#FFF;">
+        <h1 class="title-style text--center">Css3 callouts</h1>
+        <div class="wrap">
+            <div class="box pointer--bottom">
+                <p class="text--center">Pointer bottom</p>
+            </div>
+            <div class="box pointer--top">
+                <p class="text--center">Pointer top</p>
+            </div>
+            <div class="box pointer--left">
+                <p class="text--center">Pointer left</p>
+            </div>
+            <div class="box pointer--right">
+                <p class="text--center">Pointer right</p>
+            </div>
+        </div>
+    </div>
+
+  <script src="https://wow.techbrood.com/libs/jquery/jquery-1.11.1.min.js"></script>
+  </body>
+</html>

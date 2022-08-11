@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hover优先级</title>
+    <style>
+      a {
+        color: blue;
+      }
+      a:hover {
+        color: darkblue;
+      }
+      .cs-button {
+        background-color: darkblue;
+        color: white;
+      }
+      .cs-button:hover {
+        background-color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      <code>a:hover</code>的优先级比
+      <code>.cs-button</code
+      >要高，所以鼠标hover时，<code>.cs-button</code>的文字颜色不是我们想的白色，而是
+      darkblue。
+    </p>
+    <a href="javascript:" class="cs-button" role="button">按钮</a>
+  </body>
+</html>

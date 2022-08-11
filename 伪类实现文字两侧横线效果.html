@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>css伪类的学习</title>
+    <meta charset="utf-8" />
+    <style>
+      .div06 {
+        width: 900px;
+        height: 30px;
+        margin: 0 auto;
+        background: #f00;
+        text-align: center;
+        color: #fff;
+        font-size: 20px;
+      }
+      .div06:before,
+      .div06:after {
+        content: "";
+        width: 250px;
+        height: 2px;
+        background: #fff;
+        display: block; /*1.首先使伪类显示方式为块级元素*/
+        position: relative; /*2.通过相对定位的方式控制两侧内容的位置*/
+      }
+      .div06:before {
+        /*3.控制左侧横线的位置*/
+        top: 15px;
+        left: 50px;
+      }
+      .div06:after                  /*4.控制右侧横线的位置*/ {
+        top: -15px;
+        right: -600px;
+      }
+    </style>
+  </head>
+  <body>
+    <!--css的伪类实现文字两侧横线效果-->
+    <div class="div06">css的伪类实现文字两侧横线效果</div>
+  </body>
+</html>

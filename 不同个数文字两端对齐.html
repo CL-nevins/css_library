@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .f6{
+            text-align: center;
+            width: 6em; /*这个值是看最长能显示几个文字，比如这里是x个文字，则为x em； 这里就是设置的最大是6个文字*/
+        }
+        .f5{
+            letter-spacing:0.25em;  /*如果需要y个字两端对齐，则为(x-y)/(y-1),这里是（6-5）/(5-1)=0.25em */
+            /*说白了就是用多出来的letter-spacing，来均分差的字的个数，这样(x-y)/(y-1)就好理解了*/
+            margin-right:-0.25em;  /*同上，设置成和本级的letter-spacing相同*/
+        }
+        .f4{
+            letter-spacing:0.67em;
+            margin-right:-0.67em;
+        }
+        .f3{
+            letter-spacing:1.5em;
+            margin-right:-1.5em;
+        }
+        .f2{
+            letter-spacing:4em;
+            margin-right:-4em;
+        }
+    </style>
+</head>
+<body>
+<div class="div1">
+    <ul>
+        <li><span class="f6">扣税凭证种类</span></li>
+        <li><span class="f5">进项税性质</span></li>
+        <li><span class="f4">项目名称</span></li>
+        <li><span class="f2">部门</span></li>
+        <li><span class="f3">报销人</span></li>
+    </ul>
+</div>
+</body>
+</html>
