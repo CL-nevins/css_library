@@ -116,3 +116,11 @@ Whistle MCP Server 提供了以下工具，可通过 MCP 协议调用：
 
 - 邮箱: [gz7gugu@qq.com](mailto:gz7gugu@qq.com)
 - 博客: [https://7gugu.com](https://7gugu.com)
+
+# 说明一下
+
+高级啊 我的天，优先识别成 pr? 不够的才会识别成 issue?
+
+还得是人家的设计啊；
+
+确实差距大；
