@@ -1,0 +1,21 @@
+name: Manual Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: "选择环境"
+        required: true
+        default: "test"
+      version:
+        description: "发布版本号"
+        required: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print inputs
+        run: |
+          echo "env=${{ github.event.inputs.env }}"
+          echo "version=${{ github.event.inputs.version }}"
