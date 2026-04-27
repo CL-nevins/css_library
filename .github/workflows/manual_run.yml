@@ -3,14 +3,27 @@ name: Manual Workflow
 on:
   workflow_dispatch:
     inputs:
-      env:
-        description: "选择环境"
+      logLevel:
+        description: 'Log level'
         required: true
-        default: "test"
-      version:
-        description: "发布版本号"
-        required: false
-
+        default: 'warning'
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+      print_tags:
+        description: 'True to print to STDOUT'
+        required: true
+        type: boolean
+      tags:
+        description: 'Test scenario tags'
+        required: true
+        type: string
+      blogId:
+        description: '输入数字id'
+        type: number
+        required: true
 jobs:
   run:
     runs-on: ubuntu-latest
