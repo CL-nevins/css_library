@@ -17,6 +17,12 @@ jobs:
     environment: env_test01
     steps:
     - uses: actions/checkout@v4
+    - name: Write job summary
+      run: |
+        echo "## Claude Code Report" >> "$GITHUB_STEP_SUMMARY"
+        echo "" >> "$GITHUB_STEP_SUMMARY"
+        echo "- Model: xxx" >> "$GITHUB_STEP_SUMMARY"
+        echo "- Result: success" >> "$GITHUB_STEP_SUMMARY"
 
     - name: Set up Go
       uses: actions/setup-go@v5
