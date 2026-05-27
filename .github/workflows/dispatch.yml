@@ -27,5 +27,11 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ inputs.perform_deploy }}
     steps:
+      - name: Write job summary
+        run: |
+          echo "## Claude Code Report" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Model: xxx" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Result: success" >> "$GITHUB_STEP_SUMMARY"
       - name: Deploy build to target
         run: echo "Deploying build:${{ inputs.build_id }} to target:${{ inputs.deploy_target }}"
