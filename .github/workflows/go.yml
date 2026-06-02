@@ -11,9 +11,8 @@ on:
       - reopened
 
 jobs:
-
   build:
-    runs-on: default
+    runs-on: ubuntu-latest
     environment: env_test01
     steps:
     - uses: actions/checkout@v4
