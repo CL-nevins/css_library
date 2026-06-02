@@ -30,7 +30,17 @@ jobs:
         go-version: 1.23
 
     - name: Build
-      run: go build -v ./...
+      run: | 
+        echo "Error: 测试的 error"
+        echo "不以 error 开头"
+        echo "不以 Error 开头"
+        echo "不以 ERROR 开头"
+        echo "ERROR 开头"
+        echo "warning 开头，能识别吗"
+        echo "Warning aaaa"
+        echo "不以 warning 开头"
+        echo "不以 Warning 开头"
+        go build -v ./...
 
     - name: Test
       run: go test -v ./...
