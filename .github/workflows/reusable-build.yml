@@ -26,3 +26,20 @@ jobs:
         run: |
           echo "packaging target=${{ inputs.target }}"
           sleep 4
+
+  verify_package:
+    name: Reusable Verify Package - ${{ inputs.target }}
+    runs-on: ubuntu-latest
+    needs: package
+    steps:
+      - name: Verify package
+        run: |
+          echo "verifying package target=${{ inputs.target }}"
+          sleep 3
+
+  nested_deploy_check:
+    name: Nested Deploy Check - ${{ inputs.target }}
+    needs: verify_package
+    uses: ./.github/workflows/reusable-deploy.yml
+    with:
+      env_name: build-check-${{ inputs.target }}
