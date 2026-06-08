@@ -1,4 +1,4 @@
-name: DAG Demo With Matrix
+name: DAG Demo With Matrix And Uses
 
 on:
   workflow_dispatch:
@@ -64,25 +64,19 @@ jobs:
 
   build_web:
     name: 6. Build Web
-    runs-on: ubuntu-latest
     needs:
       - matrix_test
-    steps:
-      - name: Build web
-        run: |
-          echo "build web"
-          sleep 6
+    uses: ./.github/workflows/reusable-build.yml
+    with:
+      target: web
 
   build_server:
     name: 7. Build Server
-    runs-on: ubuntu-latest
     needs:
       - matrix_test
-    steps:
-      - name: Build server
-        run: |
-          echo "build server"
-          sleep 6
+    uses: ./.github/workflows/reusable-build.yml
+    with:
+      target: server
 
   integration_test:
     name: 8. Integration Test
@@ -99,13 +93,11 @@ jobs:
 
   deploy_staging:
     name: 9. Deploy Staging
-    runs-on: ubuntu-latest
-    needs: integration_test
-    steps:
-      - name: Deploy to staging
-        run: |
-          echo "deploy staging"
-          sleep 5
+    needs:
+      - integration_test
+    uses: ./.github/workflows/reusable-deploy.yml
+    with:
+      env_name: staging
 
   smoke_test:
     name: 10. Smoke Test
@@ -119,9 +111,8 @@ jobs:
 
   deploy_prod:
     name: 11. Deploy Production
-    runs-on: ubuntu-latest
-    needs: smoke_test
-    steps:
-      - name: Deploy to production
-        run: |
-          echo "deploy production"
+    needs:
+      - smoke_test
+    uses: ./.github/workflows/reusable-deploy.yml
+    with:
+      env_name: production
