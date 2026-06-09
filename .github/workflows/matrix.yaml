@@ -15,7 +15,14 @@ jobs:
         run: |
           echo "prepare"
           sleep 5
-
+  prepare_single:
+    name: 1. Prepare-Single
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare workspace single
+        run: |
+          echo "prepare single"
+          sleep 5
   lint:
     name: 2. Lint
     runs-on: ubuntu-latest
