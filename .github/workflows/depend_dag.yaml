@@ -1,0 +1,118 @@
+name: DAG Demo
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    tags:
+      - 'v*'
+  issues:
+    types:
+      - opened
+
+jobs:
+  prepare:
+    name: 1. Prepare
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare workspace
+        run: |
+          echo "prepare"
+          sleep 5
+
+  lint:
+    name: 2. Lint
+    runs-on: ubuntu-latest
+    needs: prepare
+    steps:
+      - name: Run lint
+        run: |
+          echo "lint"
+          sleep 5
+
+  unit_test:
+    name: 3. Unit Test
+    runs-on: ubuntu-latest
+    needs: prepare
+    steps:
+      - name: Run unit tests
+        run: |
+          echo "unit test"
+          sleep 8
+
+  e2e_test:
+    name: 4. E2E Test
+    runs-on: ubuntu-latest
+    needs: prepare
+    steps:
+      - name: Run e2e tests
+        run: |
+          echo "e2e test"
+          sleep 8
+
+  build_web:
+    name: 5. Build Web
+    runs-on: ubuntu-latest
+    needs:
+      - lint
+      - unit_test
+    steps:
+      - name: Build web
+        run: |
+          echo "build web"
+          sleep 6
+
+  build_server:
+    name: 6. Build Server
+    runs-on: ubuntu-latest
+    needs:
+      - lint
+      - unit_test
+    steps:
+      - name: Build server
+        run: |
+          echo "build server"
+          sleep 6
+
+  integration_test:
+    name: 7. Integration Test
+    runs-on: ubuntu-latest
+    needs:
+      - build_web
+      - build_server
+      - e2e_test
+    steps:
+      - name: Run integration test
+        run: |
+          echo "integration test"
+          sleep 6
+
+  deploy_staging:
+    name: 8. Deploy Staging
+    runs-on: ubuntu-latest
+    needs: integration_test
+    steps:
+      - name: Deploy to staging
+        run: |
+          echo "deploy staging"
+          sleep 5
+
+  smoke_test:
+    name: 9. Smoke Test
+    runs-on: ubuntu-latest
+    needs: deploy_staging
+    steps:
+      - name: Run smoke test
+        run: |
+          echo "smoke test"
+          sleep 5
+
+  deploy_prod:
+    name: 10. Deploy Production
+    runs-on: ubuntu-latest
+    needs: smoke_test
+    steps:
+      - name: Deploy to production
+        run: |
+          echo "deploy production"

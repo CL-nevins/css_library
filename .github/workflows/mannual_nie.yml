@@ -1,0 +1,76 @@
+name: Manual Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+      print_tags:
+        description: 'True to print to STDOUT'
+        required: true
+        type: boolean
+      tags:
+        description: 'Test scenario tags'
+        required: true
+        type: string
+      blogId:
+        description: '输入数字id'
+        type: number
+        required: true
+stages:
+  stage1:
+    name: 阶段_01
+    select: selected_by_default
+    jobs:
+      JOB_WJKHX:
+        name: job01
+        select: selected_by_default
+        needs: []
+        steps:
+          -
+            name: 执行shell
+            uses: official_shell_plugin
+            with:
+                OFFICIAL_SHELL_SCRIPT_INPUT: echo acbd123 && echo "start hello world.this is a test start--001!"
+          -
+            name: 执行shell02
+            uses: official_shell_plugin
+            with:
+                OFFICIAL_SHELL_SCRIPT_INPUT: echo acbd123 && echo "start hello world.this is a test start--002!"
+        if: "${{ default() }}"
+        runs-on:
+        - default
+      JOB_AAAA:
+        name: job01
+        select: selected_by_default
+        needs: []
+        steps:
+          - name: 验证所有测试结果
+            uses: official_shell_plugin
+            with:
+                OFFICIAL_SHELL_SCRIPT_INPUT: echo "=== 精确 key 恢复 ===" && echo "cache-hit: ${{ steps.restore.outputs.cache-hit }}" && sha256sum /tmp/cache-test/node_modules/test/file.txt /tmp/cache-test/.env && grep -q "test-content-" /tmp/cache-test/node_modules/test/file.txt && echo "✅ 测试1通过: 保存并恢复成功" || echo "❌ 测试1失败" && echo "" && echo "=== restore-keys 回退 ===" && echo "cache-hit: ${{ steps.restore-fallback.outputs.cache-hit }}" && [ -f /tmp/cache-restore-keys/data.txt ] && echo "✅ 测试2通过: restore-keys 前缀回退恢复成功" && cat /tmp/cache-restore-keys/data.txt || echo "⚠ restore-keys 未命中（首次运行正常）" && echo "" && echo "=== lookup-only ===" && echo "✅ 测试3通过: lookup-only 查询执行完成" && echo "" && echo "===== 缓存全链路测试完成 ====="
+        if: "${{ default() }}"
+        runs-on:
+        - default
+      job_2:
+        name: job02
+        select: selected_by_default
+        needs: []
+        steps:
+          -
+            name: 执行shell
+            uses: official_shell_plugin
+            with:
+                OFFICIAL_SHELL_SCRIPT_INPUT: echo 11111 && echo "start hello world.this is a test start!"
+        if: "${{ default() }}"
+        runs-on:
+        - default
+    pre:
+    - type: auto

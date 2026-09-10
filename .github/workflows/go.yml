@@ -1,0 +1,51 @@
+name: Go
+
+on:
+  push:
+    branches: [ master,feat/action_trigger ]
+  pull_request:
+    branches: [ master ]
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: env_test01
+    steps:
+    - uses: actions/checkout@v4
+    - name: Write job summary
+      run: |
+        echo "## Claude Code Report" >> "$GITHUB_STEP_SUMMARY"
+        echo "" >> "$GITHUB_STEP_SUMMARY"
+        echo "- Model: xxx" >> "$GITHUB_STEP_SUMMARY"
+        echo "- Result: success" >> "$GITHUB_STEP_SUMMARY"
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: 1.23
+
+    - name: Build
+      run: | 
+        echo "Error: 测试的 error"
+        echo "不以 error 开头"
+        echo "不以 Error 开头"
+        echo "不以 ERROR 开头"
+        echo "ERROR 开头"
+        echo "warning 开头，能识别吗"
+        echo "Warning aaaa"
+        echo "不以 warning 开头"
+        echo "不以 Warning 开头"
+        go build -v ./...
+
+    - name: Test
+      run: go test -v ./...
+
+    - name: test head
+      run: echo "head ${{ github.event.pull_request.head.sha }}"
+    
+    - name: echo
+      run: echo ${{vars.VAR_TEST01}}

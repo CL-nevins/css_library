@@ -1,0 +1,17 @@
+name: Workflow Call Level E
+
+on:
+  workflow_call:
+
+permissions: {}
+
+jobs:
+  run-level-e-task:
+    name: Level E independent task
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Independent task completed at level E"
+
+  call-level-f:
+    name: Level E calls F
+    uses: ./.github/workflows/workflow-call-level-f.yml
