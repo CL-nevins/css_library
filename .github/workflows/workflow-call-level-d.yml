@@ -1,0 +1,11 @@
+name: Workflow Call Level D
+
+on:
+  workflow_call:
+
+permissions: {}
+
+jobs:
+  call-level-e:
+    name: Level D calls E
+    uses: ./.github/workflows/workflow-call-level-e.yml
