@@ -6,6 +6,12 @@ on:
 permissions: {}
 
 jobs:
+  run-level-g-task:
+    name: Level G independent task
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Independent task completed at level G"
+
   call-level-h:
     name: Level G calls H
     uses: ./.github/workflows/workflow-call-level-h.yml
