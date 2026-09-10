@@ -1,0 +1,17 @@
+name: Workflow Call Level J
+
+on:
+  workflow_call:
+
+permissions: {}
+
+jobs:
+  complete:
+    name: Level J completes the chain
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report complete call chain
+        run: |
+          echo "Reusable workflow call chain complete: A -> B -> C -> D -> E -> F -> G -> H -> I -> J"
+          echo "## Workflow call chain" >> "$GITHUB_STEP_SUMMARY"
+          echo "A -> B -> C -> D -> E -> F -> G -> H -> I -> J" >> "$GITHUB_STEP_SUMMARY"

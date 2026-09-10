@@ -1,0 +1,11 @@
+name: Workflow Call Level I
+
+on:
+  workflow_call:
+
+permissions: {}
+
+jobs:
+  call-level-j:
+    name: Level I calls J
+    uses: ./.github/workflows/workflow-call-level-j.yml

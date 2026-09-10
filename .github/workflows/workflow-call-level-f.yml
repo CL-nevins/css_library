@@ -1,0 +1,11 @@
+name: Workflow Call Level F
+
+on:
+  workflow_call:
+
+permissions: {}
+
+jobs:
+  call-level-g:
+    name: Level F calls G
+    uses: ./.github/workflows/workflow-call-level-g.yml
